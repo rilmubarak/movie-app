@@ -1,0 +1,56 @@
+<%- include('partials/header')%>
+    <div class="container-fluid p-5">
+        <h1>Cast List</h1>
+        <div class="container-fluid text-right mb-1">
+            <a href="/casts/add"><button type="button" class="btn btn-success">Add Cast</button></a>
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Birth Year</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < data.length; i++){ %>
+                    <tr>
+                        <td><%= data[i].name %></td>
+                        <!-- <td><%= `${data[i].first_name} ${data[i].last_name}` %></td> -->
+                        <td><%= data[i].birth_year %></td>
+                        <td><%= data[i].phone_number %></td>
+                        <td><%= data[i].gender %></td>
+                        <td>
+                            <a href="/casts/edit/<%=data[i].id%>"><button type="button" class="btn btn-primary">Edit</button></a>  
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal<%=data[i].id%>">Delete</button>
+                            <!-- <a href="/casts/delete/<%=data[i].id%>"><button type="button" class="btn btn-primary">Delete</button></a>   -->
+                            <a href="/casts/movies/<%=data[i].id%>"><button type="button" class="btn btn-info">See Movies</button></a>
+                            <div class="modal fade" id="exampleModal<%=data[i].id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      Are you sure want to delete this?
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <a href="/casts/delete/<%=data[i].id%>"><button type="button" class="btn btn-danger">Delete</button></a>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+<%- include('partials/footer')%>

@@ -1,0 +1,30 @@
+<%- include('partials/header')%>
+    <div class="container-fluid p-5">
+        <div class="container-fluid mb-4">
+            <h1><%= data.name %></h1>
+            <!-- <h1><%= `${data.first_name} ${data.last_name}` %></h1> -->
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Release Year</th>
+                    <th scope="col">Age when Movie Released</th>
+                    <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < data.Movies.length; i++){ %>
+                    <tr>
+                        <td><%= data.Movies[i].name %></td>
+                        <td><%= data.Movies[i].released_year %></td>
+                        <td><%= formatAge(data.birth_year, data.Movies[i].released_year) %></td>
+                        <td><%= data.Movies[i].MovieCast.role %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    
+<%- include('partials/footer')%>
+

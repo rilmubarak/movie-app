@@ -1,0 +1,23 @@
+<%- include('partials/header')%>
+
+    <div class="container-fluid p-5">
+        <h1>Production Houses</h1>
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Headquarters</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < data.length; i++){ %>
+                    <tr>
+                        <td><%= data[i].name_prodHouse %></td>
+                        <td><%= data[i].headquaters %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+<%- include('partials/footer')%>

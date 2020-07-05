@@ -1,0 +1,42 @@
+<%- include('partials/header')%>
+
+<div class="container-fluid p-5">
+  <form action="/movies/edit/<%= data.id %>" method="POST">
+      <div class="form-group">
+        <label>Name</label>
+        <input name="name" type="text" class="form-control" placeholder="e.g: 12 Angry Men" value="<%= data.name %>">
+      </div>
+      <div class="form-group">
+          <label>Released Year</label>
+          <input name="released_year" type="text" class="form-control" placeholder="e.g: 1957" value="<%= data.released_year %>">
+        </div>
+      <div class="form-group">
+        <label>Genre</label>
+        <select name="genre" class="form-control">
+          <option value="Animation" <%= data.genre === 'Animation' ? 'selected' : '' %>>Animation</option>
+          <option value="Comedy" <%= data.genre === 'Comedy' ? 'selected' : '' %>>Comedy</option>
+          <option value="Drama" <%= data.genre === 'Drama' ? 'selected' : '' %>>Drama</option>
+          <option value="Horror" <%= data.genre === 'Horror' ? 'selected' : '' %>>Horror</option>
+          <option value="Religious" <%= data.genre === 'Religious' ? 'selected' : '' %>>Religious</option>
+          <option value="Thriller" <%= data.genre === 'Thriller' ? 'selected' : '' %>>Thriller</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Production House</label>
+        <select name="ProductionHouseId" class="form-control">
+          <option selected disabled>Select Production House</option>
+          <% for(let i = 0; i < dataProductionHouse.length; i++){ %>
+            <option value="<%= dataProductionHouse[i].id %>" <%= data.ProductionHouseId === dataProductionHouse[i].id ? 'selected' : '' %>><%= dataProductionHouse[i].name_prodHouse %></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Rating</label>
+        <input name="rating" type="number" class="form-control" placeholder="1-5" value="<%= data.rating %>">
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="/movies"><button type="button" class="btn btn-danger">Cancel</button></a>
+  </form>
+</div>
+
+<%- include('partials/footer')%>

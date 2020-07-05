@@ -1,0 +1,43 @@
+<%- include('partials/header')%>
+
+<div class="container-fluid p-5">
+  <form action="/movies/add" method="POST">
+      <div class="form-group">
+        <label>Name</label>
+        <input name="name" type="text" class="form-control" placeholder="e.g: 12 Angry Men">
+      </div>
+      <div class="form-group">
+          <label>Released Year</label>
+          <input name="released_year" type="text" class="form-control" placeholder="e.g: 1957">
+      </div>
+      <div class="form-group">
+        <label>Genre</label>
+        <select name="genre" class="form-control">
+          <option selected disabled>Select genre</option>
+          <option value="Animation">Animation</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Horror">Horror</option>
+          <option value="Religious">Religious</option>
+          <option value="Thriller">Thriller</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Production House</label>
+        <select name="ProductionHouseId" class="form-control">
+          <option selected disabled>Select Production House</option>
+          <% for(let i = 0; i < data.length; i++){ %>
+            <option value="<%= data[i].id %>"><%= data[i].name_prodHouse %></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Rating</label>
+        <input name="rating" type="text" class="form-control" placeholder="1-5">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="/movies"><button type="button" class="btn btn-danger">Cancel</button></a>
+  </form>
+</div>
+
+<%- include('partials/footer')%>

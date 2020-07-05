@@ -1,0 +1,70 @@
+<%- include('partials/header')%>
+
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-sm">
+            <h2><%= data.name %></h2>
+            <% if(alert.msg){ %>
+                <div class="alert alert-<%= alert.type %>" role="alert">
+                    <%= alert.msg %>
+                </div>
+            <% } %>
+        </div>
+        
+        <div class="col-sm">
+            <form action="/movies/addcast/<%= data.id %>" method="POST">
+                <input name="MovieId" value="<%= data.id %>" hidden>
+                <div class="form-group">
+                    <label>Actor</label>
+                    <select name="CastId" class="form-control">
+                        <option selected disabled>Select Cast</option>
+                        <% for(let i = 0; i < dataCast.length; i++){ %>
+                            <option value="<%= dataCast[i].id %>"><%= dataCast[i].name %></option>
+                            <!-- <option value="<%= dataCast[i].id %>"><%= `${dataCast[i].first_name} ${dataCast[i].last_name}` %></option> -->
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Role:</label>
+                    <input name="role" type="text" class="form-control" placeholder="e.g: Lead Actress">
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="/movies"><button type="button" class="btn btn-danger">Cancel</button></a>
+            </form>
+        </div>
+    </div>
+    <div class="container py-5">
+        <h1>List Cast</h1>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                <th scope="col">Actor</th>
+                <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < dataMovieCast.length; i++){ %>
+                    <tr>
+                        <td>
+                            <% for(let j = 0; j < dataCast.length; j++){ %>
+                                <% if(dataCast[j].id == dataMovieCast[i].CastId){ %>
+                                    <%= dataCast[j].name %>
+                                    <% break %>
+                                <% } %>
+                            <% } %>
+                        </td>
+                        <td><%= dataMovieCast[i].role %></td>
+                    </tr>
+                <% } %>
+                <!-- <% for(let k = 0; k < data.Casts.length; k++){ %>
+                    <tr>
+                        <td><%= data.Casts[k].name %></td>
+                        <td><%= data.Casts[k].MovieCast.role %></td>
+                    </tr>
+                <% } %> -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('partials/footer')%>

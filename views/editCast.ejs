@@ -1,0 +1,32 @@
+<%- include('partials/header')%>
+
+<div class="container-fluid p-5">
+    <form action="/casts/edit/<%= data.id %>" method="POST">
+        <div class="form-group">
+          <label>First_Name</label>
+          <input name="first_name" type="text" class="form-control" placeholder="e.g: John" value="<%= data.first_name %>">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input name="last_name" type="text" class="form-control" placeholder="e.g: 12 Doe" value="<%= data.last_name %>">
+        </div>
+        <div class="form-group">
+            <label>Birth Year</label>
+            <input name="birth_year" type="text" class="form-control" placeholder="e.g: 1957" value="<%= data.birth_year %>">
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input name="phone_number" type="text" class="form-control" placeholder="e.g: 08123456789" value="<%= data.phone_number %>">
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="radio" name="gender" value="Male" <%= data.gender === 'Male' ? 'checked' : '' %>>Male</label>
+            <input type="radio" name="gender" value="Female" <%= data.gender === 'Female' ? 'checked' : '' %>>Female</label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/casts"><button type="button" class="btn btn-danger">Cancel</button></a>
+    </form>
+</div>
+
+<%- include('partials/footer')%>

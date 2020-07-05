@@ -1,2 +1,1 @@
-# movie-app
-simple movie app with express
+# Movie App Sequelize
